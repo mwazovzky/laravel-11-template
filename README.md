@@ -7,3 +7,5 @@
 ## Mysql
 
 ## Supervisord for Queue Workers
+
+## Redis
