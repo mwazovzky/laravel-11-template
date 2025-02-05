@@ -9,3 +9,7 @@
 ## Supervisord for Queue Workers
 
 ## Redis
+
+## Testing
+
+run tests on testing database
