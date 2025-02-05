@@ -16,13 +16,23 @@ services:
     container_name: app
     build:
       context: .
-      dockerfile: ./docker/php/Dockerfile
+      dockerfile: ./docker/app/Dockerfile
     restart: unless-stopped
+    depends_on:
+      - mysql
     volumes:
       - ./:/var/www
-      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./docker/app/local.ini:/usr/local/etc/php/conf.d/local.ini
 
+  supervisor:
+    container_name: supervisor
+    build:
+      context: .
+      dockerfile: ./docker/supervisor/Dockerfile.supervisor
+    volumes:
+      - ./:/var/www
+      - ./docker/supervisor/local.ini:/usr/local/etc/php/conf.d/local.ini
+      
   mysql:
     container_name: mysql
     image: mysql:8.4
